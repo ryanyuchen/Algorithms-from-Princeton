@@ -37,7 +37,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../algs4.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -60,5 +62,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="471" y="51" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1629571935336">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="471" y="51" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1629571935336" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1629571943466">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1629571943466" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1629571945094">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1629571945094" />
   </component>
 </project>
