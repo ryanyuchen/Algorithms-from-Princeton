@@ -59,26 +59,30 @@ public class Percolation {
             // if the north site is open, then union
             // for 3x3 and site of (2,2), northIndex = 2
             int northIndex = (row - 1 - 1) * N + col;
-            if (status[northIndex]) {
+            if (row > 1 && status[northIndex]) {
                 percUF.union(curIndex, northIndex);
+                backUF.union(curIndex, northIndex);
             }
             // if the south site is open, the union
             // for 3x3 and site of (2,2), southIndex = 8
             int southIndex = (row + 1 - 1) * N + col;
-            if (status[southIndex]) {
+            if (row < N && status[southIndex]) {
                 percUF.union(curIndex, southIndex);
+                backUF.union(curIndex, southIndex);
             }
             // if the west site is open, the union
             // for 3x3 and site of (2,2), westIndex = 4
             int westIndex = (row - 1) * N + col - 1;
-            if (status[westIndex]) {
+            if (col > 1 && status[westIndex]) {
                 percUF.union(curIndex, westIndex);
+                backUF.union(curIndex, westIndex);
             }
             // if the east site is open, the union
             // for 3x3 and site of (2,2), eastIndex = 6
             int eastIndex = (row - 1) * N + col + 1;
-            if (status[eastIndex]) {
+            if (col < N && status[eastIndex]) {
                 percUF.union(curIndex, eastIndex);
+                backUF.union(curIndex, eastIndex);
             }
         }
     }
