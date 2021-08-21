@@ -1,5 +1,7 @@
 /*
 Project Link: https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php
+***********************
+This file is for a series of computational experiments
 Author: Yu Chen
  */
 
@@ -10,8 +12,8 @@ import edu.princeton.cs.algs4.StdStats;
 public class PercolationStats {
     private final double[] results;
     private final double d_95 = 1.96;
-    private int N;
-    private int T;
+    private final int N;
+    private final int T;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
@@ -30,18 +32,18 @@ public class PercolationStats {
         for (int i = 0; i < trials; i++) {
             Percolation percolation = new Percolation(n);
 
-            int openedSites = 0;
+            int openedNum = 0;
             while (!percolation.percolates()) {
                 int row = StdRandom.uniform(n) + 1;
                 int col = StdRandom.uniform(n) + 1;
 
                 if (!percolation.isOpen(row, col)) {
                     percolation.open(row, col);
-                    openedSites++;
+                    openedNum++;
                 }
             }
 
-            results[i] = openedSites * 1.0 / (n * n);
+            results[i] = openedNum * 1.0 / (n * n);
         }
     }
 
@@ -70,12 +72,12 @@ public class PercolationStats {
         int n = Integer.parseInt(args[0]);
         int trials = Integer.parseInt(args[1]);
 
-        PercolationStats pStats = new PercolationStats(n, trials);
-        StdOut.println("mean                    = " + pStats.mean());
-        StdOut.println("stddev                  = " + pStats.stddev());
+        PercolationStats testStats = new PercolationStats(n, trials);
+        StdOut.println("mean                    = " + testStats.mean());
+        StdOut.println("stddev                  = " + testStats.stddev());
         StdOut.println("95% confidence interval = "
-                + pStats.confidenceLo() + ", "
-                + pStats.confidenceHi());
+                + testStats.confidenceLo() + ", "
+                + testStats.confidenceHi());
 
     }
 

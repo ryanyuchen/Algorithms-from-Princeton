@@ -1,5 +1,7 @@
 /*
 Project Link: https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php
+*************************
+This is for Percolation class
 Author: Yu Chen
  */
 
@@ -15,20 +17,32 @@ public class Percolation {
     }
 
     // opens the site (row, col) if it is not open already
-    public void open(int row, int col)
+    public void open(int row, int col) {
+
+    }
 
     // is the site (row, col) open?
-    public boolean isOpen(int row, int col)
+    public boolean isOpen(int row, int col) {
+
+    }
 
     // is the site (row, col) full?
-    public boolean isFull(int row, int col)
+    public boolean isFull(int row, int col) {
+
+    }
 
     // returns the number of open sites
-    public int numberOfOpenSites()
+    public int numberOfOpenSites() {
+
+    }
 
     // does the system percolate?
-    public boolean percolates()
+    public boolean percolates() {
+
+    }
 
     // test client (optional)
-    public static void main(String[] args)
+    public static void main(String[] args) {
+        
+    }
 }
