@@ -2,9 +2,7 @@ package jobinterviewquestions;
 
 import java.util.Arrays;
 
-/**
- * Created by Leon on 6/30/15.
- */
+
 public class AnalysisofAlgorithms {
     /*
     Question 1

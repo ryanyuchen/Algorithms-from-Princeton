@@ -2,9 +2,7 @@ package jobinterviewquestions;
 
 import algs4.WeightedQuickUnionUF;
 
-/**
- * Created by Leon on 6/30/15.
- */
+
 public class UnionFind {
     /* Question 1
     Social network connectivity.
