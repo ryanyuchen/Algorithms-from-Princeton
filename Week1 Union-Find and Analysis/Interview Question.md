@@ -1,4 +1,4 @@
-### Interview Questions: Union–Find (ungraded)
+### Interview Questions: Union-Find (ungraded)
 TOTAL POINTS 3
 ##### Question 1
 #### Social network connectivity. <br />

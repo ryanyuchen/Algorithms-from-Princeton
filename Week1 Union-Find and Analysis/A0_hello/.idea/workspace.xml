@@ -41,7 +41,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowMessages.ShowToolbar" value="false" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../A1_percolation" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
   <component name="RunManager">
@@ -64,25 +67,13 @@
     </todo-panel>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1629385780045">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="2185" y="301" key="FileChooserDialogImpl" timestamp="1641237164390">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1629385780045" />
-    <state width="1537" height="227" key="GridCell.Tab.0.bottom" timestamp="1621695813692">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2185" y="301" key="FileChooserDialogImpl/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1641237164390" />
+    <state x="1960" y="134" key="SettingsEditor" timestamp="1641236897086">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621695813692" />
-    <state width="1537" height="227" key="GridCell.Tab.0.center" timestamp="1621695813692">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621695813692" />
-    <state width="1537" height="227" key="GridCell.Tab.0.left" timestamp="1621695813692">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621695813692" />
-    <state width="1537" height="227" key="GridCell.Tab.0.right" timestamp="1621695813692">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621695813692" />
+    <state x="1960" y="134" key="SettingsEditor/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1641236897086" />
   </component>
 </project>
