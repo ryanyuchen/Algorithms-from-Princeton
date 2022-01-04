@@ -8,6 +8,12 @@ public class AnalysisofAlgorithms {
     You may assume that you can sort the N integers in time proportional to N2 or better.
      */
 
+     /* 
+     two pointer
+     reference: 
+     https://www.tutorialcup.com/leetcode-solutions/3sum-leetcode-solution.htm
+     https://www.geeksforgeeks.org/two-pointers-technique/
+     */
     private boolean sum(int[] a, int key) {
         int left = 0;
         int right = a.length - 1;
@@ -34,9 +40,11 @@ public class AnalysisofAlgorithms {
     Search in a bitonic array.
     An array is bitonic if it is comprised of an increasing sequence of integers followed immediately by a decreasing sequence of integers.
     Write a program that, given a bitonic array of N distinct integer values, determines whether a given integer is in the array.
-    Standard version: Use ∼3lgN compares in the worst case.
-    Signing bonus: Use ∼2lgN compares in the worst case (and prove that no algorithm can guarantee to perform fewer than ∼2lgN compares in the worst case).
+    * Standard version: Use ∼3lgN compares in the worst case.
+    * Signing bonus: Use ∼2lgN compares in the worst case (and prove that no algorithm can guarantee to perform fewer than ∼2lgN compares in the worst case).
      */
+
+    // reference: https://www.geeksforgeeks.org/find-element-bitonic-array/
     private boolean binsearch(int[] a, int left, int right, int key) {
         if (a[left] < a[right]) {
             while (left < right) {
@@ -57,7 +65,7 @@ public class AnalysisofAlgorithms {
         return false;
     }
 
-    public boolean serarch(int[] a, int key) {
+    public boolean bitonicsearch(int[] a, int key) {
         int left = 0;
         int right = a.length - 1;
 
