@@ -1,5 +1,3 @@
-package jobinterviewquestions;
-
 import java.util.Arrays;
 
 

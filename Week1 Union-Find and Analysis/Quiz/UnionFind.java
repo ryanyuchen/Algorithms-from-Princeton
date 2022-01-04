@@ -1,6 +1,4 @@
-package jobinterviewquestions;
-
-import algs4.WeightedQuickUnionUF;
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 
 public class UnionFind {
@@ -18,9 +16,12 @@ public class UnionFind {
     }
 
     public double getTime(Log[] M, int N) {
+        // Weighted Quick Union UF is M log N
         WeightedQuickUnionUF network = new WeightedQuickUnionUF(N);
 
+        // log is sorted, so start from beginning
         for (int i = 0; i < M.length; i++) {
+            // connect all members
             network.union(M[i].p, M[i].q);
             if (network.count() == 1) return M[i].time;
         }
@@ -44,6 +45,10 @@ public class UnionFind {
         public MaxUF(int N){
             id = new int[N];
             size = new int[N];
+            /*
+            maintain an extra array to the weighted quick-union data structure that stores for each root i
+            the large element in the connected component containing i
+            */
             largest = new int[N];
             count = N;
             for (int i = 0; i < N; i++) {
@@ -68,6 +73,7 @@ public class UnionFind {
             if (size[proot] <= size[qroot]) {
                 id[proot] = qroot;
                 size[qroot] += size[proot];
+                // update largest and it is linked to root as size
                 if (largest[qroot] < largest[proot]) largest[qroot] = largest[proot];
             }
             else {
@@ -88,6 +94,7 @@ public class UnionFind {
 
         public int find(int i) {
             int root = root(i);
+            // return the largest element in the set
             return largest[root];
         }
 
@@ -96,8 +103,8 @@ public class UnionFind {
     /*
     Question 3
     Successor with delete. Given a set of N integers S={0,1,...,N−1} and a sequence of requests of the following form:
-    Remove x from S
-    Find the largest of x: the smallest y in S such that y≥x.
+    * Remove x from S
+    * Find the largest of x: the smallest y in S such that y≥x.
     design a data type so that all operations (except construction) should take logarithmic time or better.
      */
 
