@@ -1,19 +1,13 @@
-package jobinterviewquestions;
-
-import algs4.Stack;
-
+import edu.princeton.cs.algs4.Stack;
 import java.util.NoSuchElementException;
 
-/**
- * Created by Leon on 7/5/15.
- */
 public class StackandQueues {
     /*
     Question 1
     Queue with two stacks.
     Implement a queue with two stacks so that each queue operations takes a constant amortized number of stack operations.
      */
-
+    // reference: https://www.geeksforgeeks.org/queue-using-stacks/
     class TwoStackQueue<Item> {
         private Stack<Item> s1;
         private Stack<Item> s2;
