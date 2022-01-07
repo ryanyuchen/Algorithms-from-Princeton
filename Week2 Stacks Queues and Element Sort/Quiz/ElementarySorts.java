@@ -1,10 +1,5 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.Shell;
 
-import algs4.Shell;
-
-/**
- * Created by Leon on 7/9/15.
- */
 public class ElementarySorts {
     /*
     Question 1
@@ -73,12 +68,12 @@ public class ElementarySorts {
     /*
     Question 3
     Dutch national flag. Given an array of N buckets, each containing a red, white, or blue pebble, sort them by color. The allowed operations are:
-    swap(i,j): swap the pebble in bucket i with the pebble in bucket j.
-    color(i): color of pebble in bucket i.
+    * swap(i,j): swap the pebble in bucket i with the pebble in bucket j.
+    * color(i): color of pebble in bucket i.
     The performance requirements are as follows:
-    At most N calls to color().
-    At most N calls to swap().
-    Constant extra space.
+    * At most N calls to color().
+    * At most N calls to swap().
+    * Constant extra space.
      */
 
     enum Pebble {
