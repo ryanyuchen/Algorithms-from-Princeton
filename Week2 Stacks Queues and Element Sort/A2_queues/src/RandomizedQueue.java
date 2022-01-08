@@ -3,7 +3,10 @@ Project Link: https://coursera.cs.princeton.edu/algs4/assignments/queues/specifi
 Author: Yu Chen
  */
 
-public class RandomizedQueue {
+import java.util.Iterator;
+
+public class RandomizedQueue<Item> implements Iterable<Item> {
+
     // construct an empty randomized queue
     public RandomizedQueue()
 
@@ -27,4 +30,5 @@ public class RandomizedQueue {
 
     // unit testing (required)
     public static void main(String[] args)
+
 }
