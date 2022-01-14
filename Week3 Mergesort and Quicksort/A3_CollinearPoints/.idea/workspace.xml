@@ -48,6 +48,14 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
     </configuration>
+    <configuration name="Point" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Point" />
+      <module name="A3_CollinearPoints" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -61,12 +69,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Point" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="WindowStateProjectService">
     <state x="2284" y="313" key="FileChooserDialogImpl" timestamp="1642187665526">
       <screen x="1920" y="0" width="2048" height="1112" />
     </state>
     <state x="2284" y="313" key="FileChooserDialogImpl/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1642187665526" />
+    <state width="1070" height="320" key="GridCell.Tab.0.bottom" timestamp="1642196514238">
+      <screen x="1920" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1070" height="320" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1642196514238" />
+    <state width="1070" height="320" key="GridCell.Tab.0.center" timestamp="1642196514238">
+      <screen x="1920" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1070" height="320" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1642196514238" />
+    <state width="1070" height="320" key="GridCell.Tab.0.left" timestamp="1642196514237">
+      <screen x="1920" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1070" height="320" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1642196514237" />
+    <state width="1070" height="320" key="GridCell.Tab.0.right" timestamp="1642196514238">
+      <screen x="1920" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1070" height="320" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.2048.1112@1920.0.2048.1112" timestamp="1642196514238" />
     <state x="2060" y="146" key="SettingsEditor" timestamp="1642187667888">
       <screen x="1920" y="0" width="2048" height="1112" />
     </state>
