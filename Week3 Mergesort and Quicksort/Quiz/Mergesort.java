@@ -1,10 +1,6 @@
-package jobinterviewquestions;
-
 import stdlib.StdRandom;
+import java.util.Arrays;
 
-/**
- * Created by Leon on 7/12/15.
- */
 public class Mergesort {
     /*
     Question 1
@@ -16,26 +12,24 @@ public class Mergesort {
         return a.compareTo(b) < 0;
     }
 
-    public void mergeWithSmaller(Comparable[] a, Comparable[] aux) {
-        int N = aux.length;
-        assert a.length == 2*N;
+    public void mergeWithSmallerAuxArray(Comparable[] a) {
+        // reference: https://massivealgorithms.blogspot.com/2019/03/merging-with-smaller-auxiliary-array.html
 
-        for (int i = 0; i < N; i++) {
-            aux[i] = a[i];
+        int n = a.length/2;
+        Comparable[] aux = new Comparable[n];
+
+        for (int i = 0; i < n; i++) {
+            aux[i] = a[i]; // copy subarray of a[0] to a[n-1] to aux
         }
 
         int l = 0;
-        int r = N;
+        int r = n;
 
-        int i = 0;
-        for (; i < N; i++) {
-            if (less(aux[l], a[r])) a[i] = aux[l++];
-            else a[i] = a[r++];
-        }
-
-        while (l < N) {
-            if (r >= 2*N || less(aux[l], a[r]) ) a[i++] = aux[l++];
-            else a[i++] = a[r++];
+        for (int k = 0; k < 2*n; k++){
+            if(l >= n) break; //aux is out
+            else if(r >= 2 * n) a[k]=aux[l++]; //copy the left of aux to a
+            else if(less(array[r],aux[l])) a[k] = array[r++];
+            else a[k] = aux[l++];
         }
     }
 
@@ -45,44 +39,58 @@ public class Mergesort {
     An inversion in an array a[] is a pair of entries a[i] and a[j] such that i<j but a[i]>a[j].
     Given an array, design a linearithmic algorithm to count the number of inversions.
      */
+    public int Countinginversions(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+        //reference: https://www.geeksforgeeks.org/counting-inversions/
 
-    private int merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
-        }
+        // during the merge process
+        private static int mergeAndCount(int[] arr, int l, int m, int r)
+        {
+            // Left subarray
+            int[] left = Arrays.copyOfRange(arr, l, m + 1);
 
-        int k = lo;
-        int i = lo;
-        int j = mid + 1;
-        int count = 0;
+            // Right subarray
+            int[] right = Arrays.copyOfRange(arr, m + 1, r + 1);
 
-        while (k < hi) {
-            if (i > mid) a[k++] = aux[j++];
-            else if (j > hi) a[k++] = aux[i++];
-            else if (less(aux[j], aux[i])) {
-                count += mid + 1 - i;
-                a[k++] = aux[j++];
+            int i = 0, j = 0, k = l, swaps = 0;
+
+            while (i < left.length && j < right.length) {
+                if (left[i] <= right[j])
+                    arr[k++] = left[i++];
+                else {
+                    arr[k++] = right[j++];
+                    swaps += (m + 1) - (l + i);
+                }
             }
-            else a[k++] = aux[i++];
+            while (i < left.length)
+                arr[k++] = left[i++];
+            while (j < right.length)
+                arr[k++] = right[j++];
+            return swaps;
         }
-        return count;
-    }
 
-    public int countInversion(Comparable[] a) {
-        Comparable[] aux = new Comparable[a.length];
-        int count = 0;
+        // Merge sort function
+        private static int mergeSortAndCount(int[] arr, int l, int r)
+        {
+            // Keeps track of the inversion count at a
+            // particular node of the recursion tree
+            int count = 0;
 
-        for (int sz = 1; sz < a.length; sz += sz) {
-            for (int i = 0; i < a.length - sz; i += 2*sz) {
-                int lo = i;
-                int m = i + sz - 1;
-                int hi = Math.min(i + 2*sz - 1, a.length - 1);
-                count += merge(a, aux, lo, m, hi);
+            if (l < r) {
+                int m = (l + r) / 2;
+
+                // Total inversion count = left subarray count + right subarray count + merge count
+                // Left subarray count
+                count += mergeSortAndCount(arr, l, m);
+
+                // Right subarray count
+                count += mergeSortAndCount(arr, m + 1, r);
+
+                // Merge count
+                count += mergeAndCount(arr, l, m, r);
             }
-        }
-        return count;
-    }
 
+            return count;
+        }
 
     /*
     Question 3
@@ -146,6 +154,5 @@ public class Mergesort {
         shuffle(rh, N - N / 2);
         merge(head, rh);
     }
-
 
 }

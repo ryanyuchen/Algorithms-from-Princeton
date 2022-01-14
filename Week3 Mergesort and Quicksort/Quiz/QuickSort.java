@@ -1,14 +1,10 @@
-package jobinterviewquestions;
-
-import algs4.Bag;
+import edu.princeton.cs.algs4.Bag;
 import stdlib.In;
 
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-/**
- * Created by Leon on 7/14/15.
- */
+
 public class QuickSort {
     /*
     Question 1
@@ -21,9 +17,7 @@ public class QuickSort {
     Design an algorithm for the problem that uses NlogN compares (probabilistically).
      */
 
-    /*
-    Binary search, compare each nut with bolts already compared (logN! = NlogN time), identify the interval, then divide the bolts in the interval (Sum of N/x = NlogN time)
-     */
+    // reference: https://www.geeksforgeeks.org/nuts-bolts-problem-lock-key-problem/
 
     class Nut {
         private int size;
@@ -39,8 +33,10 @@ public class QuickSort {
     }
 
     public void pair(Bolt[] bolts, Nut[] nuts) {
+        // check nut and bolt arrays have the same length
         int n = nuts.length;
         assert bolts.length == n;
+
         Nut[] auxN = new Nut[n];
         Bolt[] auxB = new Bolt[n]; //need TreeMap to implement
         for (int i = 0; i < n; i++) {
@@ -89,9 +85,9 @@ public class QuickSort {
     Given two sorted arrays a[] and b[], of sizes N1 and N2, respectively,
     design an algorithm to find the kth largest key.
     The order of growth of the worst case running time of your algorithm should be logN, where N=N1+N2.
-    Version 1: N1=N2 and k=N/2
-    Version 2: k=N/2
-    Version 3: no restrictions
+    * Version 1: N1=N2 and k=N/2
+    * Version 2: k=N/2
+    * Version 3: no restrictions
      */
     int MAX = Integer.MAX_VALUE;
     int MIN = Integer.MIN_VALUE;
@@ -119,6 +115,7 @@ public class QuickSort {
     The expected running time of your algorithm should be linear.
      */
 
+    //reference: https://massivealgorithms.blogspot.com/2019/03/decimal-dominants.html
     class DecimalDominants {
         private TreeMap<Integer, Integer> counts;
         private int K;
