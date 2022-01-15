@@ -1,3 +1,8 @@
+/*
+Project Link: https://coursera.cs.princeton.edu/algs4/assignments/collinear/specification.php
+Author: Yu Chen
+ */
+
 /*************************************************************************
  *  Compilation:  javac LineSegment.java
  *  Execution:    none
