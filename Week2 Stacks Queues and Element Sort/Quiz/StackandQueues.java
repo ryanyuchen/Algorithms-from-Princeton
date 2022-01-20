@@ -49,6 +49,56 @@ public class StackandQueues {
         }
     }
 
+    // add leetcode solution
+    class MyQueue {
+        private Stack<Integer> s1;
+        private Stack<Integer> s2;
+
+        public MyQueue() {
+            s1 = new Stack<Integer>();
+            s2 = new Stack<Integer>();
+            
+        }
+        
+        public void push(int x) {
+            while (!s1.isEmpty()) {
+                int tmp = s1.pop();
+                s2.push(tmp);
+            }
+            
+            s2.push(x);
+            
+            while (!s2.isEmpty()) {
+                int tmp = s2.pop();
+                s1.push(tmp);
+            }
+        }
+        
+        public int pop() {
+            if (s1.isEmpty()) {
+                System.out.println("Queue is Empty");
+                System.exit(0);
+            }
+            int front = s1.peek();
+            s1.pop();
+            return front;
+        }
+        
+        public int peek() {
+            if (s1.isEmpty()) {
+                System.out.println("Queue is Empty");
+                System.exit(0);
+            }
+            int front = s1.peek();
+            return front;
+        }
+        
+        public boolean empty() {
+            return s1.isEmpty() && s2.isEmpty();
+            
+        }
+    }
+
     /*
     Question 2
     Stack with max.
