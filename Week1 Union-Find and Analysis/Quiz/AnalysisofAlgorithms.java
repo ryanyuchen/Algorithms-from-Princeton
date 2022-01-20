@@ -35,6 +35,41 @@ public class AnalysisofAlgorithms {
         return false;
     }
 
+    // leetcode solution of 3SUM
+    class Solution {
+        public List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> res = new ArrayList<List<Integer>>();
+            Arrays.sort(nums);
+            int n = nums.length;
+            
+            for (int i = 0; i < n; i++) {
+                int p = i + 1;
+                int q = n - 1;
+                
+                while (p < q) {
+                    if (nums[p] + nums[q] == -nums[i]) {
+                        List<Integer> tmp = new ArrayList<>();
+                        tmp.add(nums[i]);
+                        tmp.add(nums[p]);
+                        tmp.add(nums[q]);
+                        res.add(tmp);
+                        
+                        while (p+1 < q && nums[p+1] == nums[p]) p++;
+                        while (q-1 > p && nums[q-1] == nums[q]) q--;
+                        
+                        p++;
+                        q--;
+                    }
+                    else if (nums[p] + nums[q] > -nums[i]) q--;
+                    else p++;
+                }
+                
+                while (i+1 < n && nums[i+1] == nums[i]) i++;
+            }
+            return res;
+        }
+    }
+
     /*
     Question 2
     Search in a bitonic array.
