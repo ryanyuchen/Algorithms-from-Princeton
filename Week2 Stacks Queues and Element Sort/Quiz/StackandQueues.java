@@ -49,7 +49,7 @@ public class StackandQueues {
         }
     }
 
-    // add leetcode solution
+    // add leetcode solution of Queue with two stacks
     class MyQueue {
         private Stack<Integer> s1;
         private Stack<Integer> s2;
@@ -106,7 +106,7 @@ public class StackandQueues {
     Assume the elements are reals numbers so that you can compare them.
      */
 
-     //reference: https://www.geeksforgeeks.org/tracking-current-maximum-element-in-a-stack/
+    //reference: https://www.geeksforgeeks.org/tracking-current-maximum-element-in-a-stack/
     class MaxStack {
         private int N;
         private Node first;
@@ -242,8 +242,6 @@ public class StackandQueues {
         }
     }
 
-
-
     /*
     Question 5
     Clone a linked structure with two pointers per node.
@@ -253,6 +251,10 @@ public class StackandQueues {
     Design a linear-time algorithm to create a copy of the doubly-linked structure.
     You may modify the original linked structure, but you must end up with two copies of the original.
      */
+    
+
+    // reference: https://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/
+    //            https://www.geeksforgeeks.org/clone-linked-list-next-random-pointer-o1-space/
 
     private class Node {
         private String item;
