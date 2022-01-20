@@ -106,6 +106,7 @@ public class StackandQueues {
     Assume the elements are reals numbers so that you can compare them.
      */
 
+     //reference: https://www.geeksforgeeks.org/tracking-current-maximum-element-in-a-stack/
     class MaxStack {
         private int N;
         private Node first;
@@ -204,6 +205,44 @@ public class StackandQueues {
             else return p2;
         }
     }
+
+    // add leetcode solution using Floyd’s Cycle-Finding Algorithm, 
+    // reference: https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
+    /**
+    * Definition for singly-linked list.
+    * class ListNode {
+    *     int val;
+    *     ListNode next;
+    *     ListNode(int x) {
+    *         val = x;
+    *         next = null;
+    *     }
+    * }
+
+    Traverse linked list using two pointers.
+    Move one pointer(slow_p) by one and another pointer(fast_p) by two.
+    If these pointers meet at the same node then there is a loop. If pointers do not meet then linked list doesn’t have a loop.
+    */
+    public class Solution {
+        public boolean hasCycle(ListNode head) {
+            ListNode slow_p = head;
+            ListNode fast_p = head;
+            
+            while (slow_p != null && fast_p != null && fast_p.next != null) {
+                slow_p = slow_p.next;
+                fast_p = fast_p.next.next;
+                
+                if (slow_p == fast_p) {
+                    return true;
+                }
+            }
+            
+            return false;
+            
+        }
+    }
+
+
 
     /*
     Question 5
