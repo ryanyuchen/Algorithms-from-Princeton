@@ -1,11 +1,7 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.DoublingRatio;
+import edu.princeton.cs.algs4.Queue;
 
-import algs4.DoublingRatio;
-import algs4.Queue;
 
-/**
- * Created by Leon on 7/20/15.
- */
 public class ElementarySymbolTables {
     /*
     Question 1
@@ -39,6 +35,7 @@ public class ElementarySymbolTables {
         }
     }
 
+    // reference: https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
     public boolean checkBST(Node p, int min, int max) {
         if (p == null) return true;
         if(p.key >= max || p.key <= min ) return false;
@@ -51,6 +48,7 @@ public class ElementarySymbolTables {
     Design an algorithm to perform an inorder traversal of a binary search tree using only a constant amount of extra space.
      */
 
+    // reference: https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
     public void inorder(Node root) {
         if (root == null) return;
 
@@ -96,6 +94,12 @@ public class ElementarySymbolTables {
     /*
     Symbol table of user as keys, value are symbol table of website as keys and visit numbers as value
      */
+    
+    /*
+    Use a BST and use tuple of (user + website) as key, would take lg(mn) to insert and update the count. 
+    Use a hash table and use tuple of (user + website) as key can take constant time to insert and update 
+    count.
+    */
 
     public static void main(String[] args) {
         double a = Double.NaN;

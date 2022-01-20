@@ -1,19 +1,28 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.MaxPQ;
+import edu.princeton.cs.algs4.MinPQ;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.SymbolDigraph;
 
-import algs4.MaxPQ;
-import algs4.MinPQ;
-import algs4.Queue;
-import algs4.SymbolDigraph;
-
-/**
- * Created by Leon on 7/19/15.
- */
 public class PriorityQueue {
     /*
     Question 1
     Dynamic median.
     Design a data type that supports insert in logarithmic time, find-the-median in constant time, and remove-the-median in logarithmic time.
      */
+    
+    /* 
+    Use 2 heaps: a maxHeap contains smaller half of items, a minHeap contains larger half of items.
+
+    First add 2 first items into heaps. Add smaller one into maxHeap, add larger one into minHeap.
+
+    Then process next item with following steps:
+
+    If item is smaller than root of maxHeap, add it to maxHeap, otherwise, add it to minHeap.
+
+    Balance the heaps (this this step heaps will be either balanced or one of them will contain 1 more item). 
+    If number of items in one of the heap is greater than other heap by more than 1, remove the root of larger 
+    heap and add it to other heap.
+    */
 
     class MediaHeap {
         private MaxPQ<Integer> left;
@@ -66,6 +75,39 @@ public class PriorityQueue {
 
     }
 
+    // reference: https://zhangxycc.github.io/2019/07/01/Coursera-Algorithm-Week4-Interview-Questions/
+    class MedianFinder {
+
+        private PriorityQueue<Integer> maxQ = new PriorityQueue<Integer>();
+
+        PriorityQueue<Integer> minQ = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                // TODO Auto-generated method stub
+                return o2 - o1;
+            }
+            });
+            
+        public void addNum(int num) {
+            if(minQ.size() == 0 || minQ.peek() >= num){
+                minQ.add(num);
+            }else{
+                maxQ.add(num);
+            }
+            if(maxQ.size() == minQ.size() + 1){
+                minQ.add(maxQ.poll());
+            }
+            if(maxQ.size() + 2 == minQ.size()){
+                maxQ.add(minQ.poll());
+            }
+        }
+    }
+    
+    public double findMedian() {
+        return minQ.size() == maxQ.size() ? (minQ.peek() +maxQ.peek()) / 2.0 : minQ.peek();
+    }
+}
+
     /*
     Question 2
     Randomized priority queue.
@@ -87,6 +129,20 @@ public class PriorityQueue {
     For example, 1729=9^3+10^3=1^3+12^3. Design an algorithm to find all taxicab numbers with a, b, c, and d less than N.
     Version 1: Use time proportional to N^2logN and space proportional to N^2.
     Version 2: Use time proportional to N^2logN and space proportional to N.
+     */
+
+     /*
+     Imagine a 2-D matrix m[i][j] = i^3 + j^3. We don't have to create this matrix in memory. 
+     Row's item are in ascending order and column's item are in ascending order too. We could 
+     use a minHeap (minPQ) to store the diagonal first. Then do following steps until minHeap is empty:
+
+    Get current min (minCur) from the minHeap, compare it to the preMin, if they are equal, we 
+    find a pair of sums (a^3+b^3=c^3+d^3).
+    Put the item to the right of minCur in matrix to the minHeap.
+    Algorithm works becuase it guarantees that all items in matrix are added and taken out of 
+    the minHeap in order. We always take the min item so far from the minHeap and add smallest 
+    larger item to the heap for every iteration. The heap contains N items only.
+
      */
 
     class Taxicab implements Comparable<Taxicab>{
