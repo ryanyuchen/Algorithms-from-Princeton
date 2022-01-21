@@ -111,6 +111,60 @@ public class ElementarySymbolTables {
         }
     }
 
+    // add leetcode solution, reference: https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+    /**
+    * Definition for a binary tree node.
+    * public class TreeNode {
+    *     int val;
+    *     TreeNode left;
+    *     TreeNode right;
+    *     TreeNode() {}
+    *     TreeNode(int val) { this.val = val; }
+    *     TreeNode(int val, TreeNode left, TreeNode right) {
+    *         this.val = val;
+    *         this.left = left;
+    *         this.right = right;
+    *     }
+    * }
+    */
+    class Solution {
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> res = new ArrayList<Integer>();
+            
+            if (root == null) return res;
+            
+            TreeNode prev;
+            TreeNode curr = root;
+            
+            while (curr != null) {
+                if (curr.left == null) {
+                    res.add(curr.val);
+                    curr = curr.right;
+                }
+                else {
+                    prev = curr.left;
+                    
+                    while (prev.right != null && prev.right != curr) {
+                        prev = prev.right;
+                    }
+                    
+                    if (prev.right == null) {
+                        prev.right = curr;
+                        curr = curr.left;
+                    }
+                    else {
+                        prev.right = null;
+                        res.add(curr.val);
+                        curr = curr.right;
+                    }
+                }
+            }
+            
+            return res;
+            
+        }
+    }
+
     /*
     Question 4
     Web tracking. Suppose that you are tracking N web sites and M users and you want to support the following API:
