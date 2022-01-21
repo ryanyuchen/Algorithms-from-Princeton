@@ -47,6 +47,37 @@ public class ElementarySorts {
         }
     }
 
+    // add leetcode solution, reference: https://afteracademy.com/blog/find-the-intersection-of-two-unsorted-arrays
+    class Solution {
+        public int[] intersection(int[] nums1, int[] nums2) {
+            Set<Integer> temp = new HashSet<Integer>();
+            int n = nums1.length;
+            int m = nums2.length;
+            int i = 0;
+            int j = 0;
+            Arrays.sort(nums1);
+            Arrays.sort(nums2);
+            
+            while (i < n && j < m) {
+                if (nums1[i] == nums2[j]) {
+                    temp.add(nums1[i]);
+                    i++;
+                    j++;
+                }
+                else if (nums1[i] < nums2[j]) i++;
+                else j++;
+            }
+            
+            System.out.print(temp.size());
+            int[] res = new int[temp.size()];
+            i = 0;
+            for(Integer k : temp) res[i++] = k;
+            
+            return res;
+            
+        }
+    }
+
     /*
     Question 2
     Permutation.
