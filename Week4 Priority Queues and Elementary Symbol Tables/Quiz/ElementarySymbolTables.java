@@ -42,6 +42,34 @@ public class ElementarySymbolTables {
         return checkBST(p.left, min, p.key) && checkBST(p.right, p.key, max);
     }
 
+    // add leetcode solution, reference: https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
+    /**
+    * Definition for a binary tree node.
+    * public class TreeNode {
+    *     int val;
+    *     TreeNode left;
+    *     TreeNode right;
+    *     TreeNode() {}
+    *     TreeNode(int val) { this.val = val; }
+    *     TreeNode(int val, TreeNode left, TreeNode right) {
+    *         this.val = val;
+    *         this.left = left;
+    *         this.right = right;
+    *     }
+    * }
+    */
+    class Solution {
+        public boolean isValidBST(TreeNode root) {
+            return isValid(root, Long.MIN_VALUE,Long.MAX_VALUE);
+        }
+        
+        private boolean isValid(TreeNode p, Long min, Long max) {
+            if (p == null) return true;
+            if (p.val <= min || p.val >= max) return false;
+            return isValid(p.left, min, (long)p.val) && isValid(p.right, (long)p.val, max);
+        }
+    }
+
     /*
     Question 3
     Inorder traversal with constant extra space.
