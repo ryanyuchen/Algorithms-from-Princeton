@@ -1,16 +1,11 @@
-package jobinterviewquestions;
-
-import algs4.Queue;
-import algs4.RedBlackBST;
-import algs4.ST;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.RedBlackBST;
+import edu.princeton.cs.algs4.ST;
 import stdlib.In;
 import stdlib.StdIn;
 
 import java.util.LinkedList;
 
-/**
- * Created by Leon on 7/22/15.
- */
 public class BalancedSearchTrees {
     /*
     Question 1
@@ -97,6 +92,8 @@ public class BalancedSearchTrees {
     Remove the ith item from the queue.
      */
 
+     // use red-black BST to meet logrithmic
+     // code example: https://www.tabnine.com/code/java/classes/edu.princeton.cs.algs4.RedBlackBST
     class GeneralizedQueue<Item> {
         private int index;
         private RedBlackBST<Integer, Item> store;
