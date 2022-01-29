@@ -12,13 +12,13 @@ import java.util.List;
 public class KdTree {
     private int size;
     private Node root;
-    //private Point2D point;
 
     private static class Node {
         Point2D point;
         RectHV rect;
         Node left;
         Node right;
+        private double xmin, xmax, ymin, ymax;
         boolean isVertical;
 
         private Node(Point2D point, boolean isVertical, Node prev) {
@@ -28,28 +28,28 @@ public class KdTree {
             if (prev == null) {
                 this.rect = new RectHV(0.0, 0.0, 1.0, 1.0);
             } else {
-                double xmin = prev.rect.xmin();
-                double xmax = prev.rect.xmax();
-                double ymin = prev.rect.ymin();
-                double ymax = prev.rect.ymax();
+                this.xmin = prev.rect.xmin();
+                this.xmax = prev.rect.xmax();
+                this.ymin = prev.rect.ymin();
+                this.ymax = prev.rect.ymax();
 
                 int comp = prev.compareTo(this.point);
 
                 if (this.isVertical) {
                     if (comp > 0.0) {
-                        ymax = prev.point.y();
+                        this.ymax = prev.point.y();
                     } else {
-                        ymin = prev.point.y();
+                        this.ymin = prev.point.y();
                     }
                 } else {
                     if (comp > 0.0) {
-                        xmax = prev.point.x();
+                        this.xmax = prev.point.x();
                     } else {
-                        xmin = prev.point.x();
+                        this.xmin = prev.point.x();
                     }
                 }
 
-                this.rect = new RectHV(xmin, xmax, ymin, ymax);
+                this.rect = new RectHV(this.xmin, this.xmax, this.ymin, this.ymax);
             }
         }
 
@@ -59,6 +59,18 @@ public class KdTree {
             } else {
                 return Double.compare(this.point.y(), that.y());
             }
+        }
+
+        public double distSquaredToLine(Point2D p) {
+            double x = p.x(), y = p.y();
+            double dx = 0.0, dy = 0.0;
+
+            if (x < this.xmin) dx = x - this.xmin;
+            else if (x > this.xmax) dx = x - this.xmax;
+            if (y < this.ymin) dy = y - this.ymin;
+            else if (y > this.ymax) dy = y - this.ymax;
+
+            return dx * dx + dy * dy;
         }
     }
 
@@ -201,16 +213,20 @@ public class KdTree {
         // if curr point is equal to target, then return
         if (curr.point.equals(target)) return curr.point;
 
-        if (curr.rect.distanceSquaredTo(target) < target.distanceSquaredTo(nearest)) {
-            if (target.distanceSquaredTo(curr.point) < target.distanceSquaredTo(nearest)) {
-                nearest = curr.point;
-            }
+        if (curr.distSquaredToLine(target) < nearest.distanceSquaredTo(target) && curr.point.distanceSquaredTo(target) < nearest.distanceSquaredTo(target)) {
+            nearest = curr.point;
+        }
 
-            int comp = curr.compareTo(target);
-            if (comp < 0) {
-                nearest = searchNearest(curr.right, target, nearest);
-            } else {
+        // When coordinates are equal, both subtrees are checked regardless of the first result since distSquaredToLine(p) = 0
+        if (curr.compareTo(target) <= 0) {
+            nearest = searchNearest(curr.right, target, nearest);
+            if (nearest.distanceSquaredTo(target) > curr.distSquaredToLine(target)) {
                 nearest = searchNearest(curr.left, target, nearest);
+            }
+        } else if (curr.compareTo(target) > 0) {
+            nearest = searchNearest(curr.left, target, nearest);
+            if (nearest.distanceSquaredTo(target) > curr.distSquaredToLine(target)) {
+                nearest = searchNearest(curr.right, target, nearest);
             }
         }
 

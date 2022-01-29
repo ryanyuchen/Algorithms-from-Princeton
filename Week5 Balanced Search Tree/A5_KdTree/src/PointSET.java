@@ -3,7 +3,10 @@ Project Link: https://coursera.cs.princeton.edu/algs4/assignments/kdtree/specifi
 Author: Yu Chen
  */
 
-import edu.princeton.cs.algs4.*;
+
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.SET;
 
 public class PointSET {
     /*
@@ -79,17 +82,6 @@ public class PointSET {
 
     public static void main(String[] args) {
         // unit testing of the methods (optional)
-        String filename = StdIn.readLine();
-        In in = new In(filename);
-        PointSET brute = new PointSET();
-        while (!in.isEmpty()) {
-            double x = in.readDouble();
-            double y = in.readDouble();
-            Point2D p = new Point2D(x, y);
-            brute.insert(p);
-        }
-        System.out.println(brute.contains(new Point2D(0.956346, 0.295675)));
-        System.out.println(brute.isEmpty());
-        System.out.println(brute.size());
+
     }
 }
