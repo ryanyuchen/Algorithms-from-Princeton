@@ -1,13 +1,6 @@
-package jobinterviewquestions;
-
-
-import algs4.Vector;
-
+import edu.princeton.cs.algs4.Vector;
 import java.util.HashSet;
 
-/**
- * Created by Leon on 7/27/15.
- */
 public class HashTables {
     /*
     Question 1
@@ -17,6 +10,10 @@ public class HashTables {
     Design an algorithm for the 4-SUM problem that takes time proportional to N2 (under suitable technical assumptions).
      */
 
+    /*
+    HashSet vs TreeSet
+    https://www.geeksforgeeks.org/hashset-vs-treeset-in-java/
+    */
     public static boolean fourSum(int[] a) {
         int n = a.length;
         assert n >= 4;
