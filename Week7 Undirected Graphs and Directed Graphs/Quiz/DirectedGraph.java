@@ -1,12 +1,7 @@
-package jobinterviewquestions;
-
-import algs4.*;
+import edu.princeton.cs.algs4.*;
 
 import java.util.Iterator;
 
-/**
- * Created by Leon on 7/29/15.
- */
 public class DirectedGraph {
     /*
     Question 1
@@ -17,6 +12,9 @@ public class DirectedGraph {
     where V is the number of vertices and E is the number of edges.
      */
 
+    /*
+    Reference: https://stackoverflow.com/questions/51006682/how-to-find-the-shortest-directed-cycle-in-a-directed-graph
+    */
     private boolean[] marked;
     private boolean[] onStack;
     private int[] edgeTo;
@@ -101,6 +99,11 @@ public class DirectedGraph {
     Digraph: Design a linear-time algorithm to determine whether a digraph has a vertex that is reachable from every other vertex, and if so, find one.
      */
 
+    /*
+    Reference: https://stackoverflow.com/questions/15716318/linear-time-algorithm-to-determine-whether-a-dag-has-a-vertex-reachable-from-eve
+
+    */
+    
     public int findVinDAG(Digraph g) {
         //assert g is DAG
         Digraph gr = g.reverse();

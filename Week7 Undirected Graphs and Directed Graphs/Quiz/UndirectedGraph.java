@@ -1,17 +1,13 @@
-package jobinterviewquestions;
-
-import algs4.BreadthFirstPaths;
-import algs4.Graph;
-import algs4.Stack;
+import edu.princeton.cs.algs4.BreadthFirstPaths;
+import edu.princeton.cs.algs4.Graph;
+import edu.princeton.cs.algs4.Stack;
 
 import java.util.Iterator;
 
-/**
- * Created by Leon on 7/29/15.
- */
 public class UndirectedGraph {
     private boolean[] marked;
     //private int[] edgeTo;
+    private int V;  // number of vertex
 
     public Iterator<Integer> adj(int v) {
         return null;
@@ -23,6 +19,15 @@ public class UndirectedGraph {
     Implement depth-first search in an undirected graph without using recursion.
      */
 
+    /*
+    Reference: https://www.geeksforgeeks.org/iterative-depth-first-traversal/
+    Algorithm: 
+    1. Created a stack of nodes and visited array.
+    2. Insert the root in the stack.
+    3. Run a loop till the stack is not empty.
+    4. Pop the element from the stack and print the element.
+    5. For every adjacent and unvisited node of current node, mark the node and insert it in the stack.
+    */
     private void dfs(UndirectedGraph G, int v) {
         marked[v] = true;
         Stack<Integer> visited = new Stack<Integer>();
@@ -102,6 +107,65 @@ public class UndirectedGraph {
     /*
     use the even edge number to check, then use dfs to print the cycle
      */
+    
+    /*
+    Reference: https://www.geeksforgeeks.org/eulerian-path-and-circuit/
+    Eulerian Cycle 
+    An undirected graph has Eulerian cycle if following two conditions are true. 
+    ….a) All vertices with non-zero degree are connected. We don’t care about vertices with zero degree because they don’t belong to Eulerian Cycle or Path (we only consider all edges). 
+    ….b) All vertices have even degree.
+
+    */
+    void DFS(int v, boolean visited[]) {
+        visited[v] = true;
+
+        Iterator<Integer> i = adj[v].listIterator();
+        while (i.hasNext()) {
+            int j = i.next();
+            if (!visited[j]) {
+                DFS(j, visited);
+
+            }
+        }
+    }
+
+    boolean isCoonected() {
+        boolean visited[] = new boolean[V];
+        // initialize visted[] to false
+        for (int i = 0; i < V; i++) {
+            visited[i] = false;
+        }
+
+        // find a vertex with non-zero degree
+        for (int i = 0; i < V; i++) {
+            if (adj[i].size() != 0) break;
+        }
+        // if no degree, return true
+        if (i == V) return true;
+
+        // start dfs
+        DFS(i, visited);
+
+        for (int i = 0; i < V; i++) {
+            if (visited[i] == false && adj[i].size() != 0) return false;
+        }
+
+        return true;
+
+    }
+
+    boolean isEular() {
+        if (isCoonected() == false) return false;
+        // vertex with odd degree
+        int odd = 0;
+        for (int i = 0; i < V; i++) {
+            if (adj[i].size() % 2 != 0) odd++;
+        }
+
+        if (odd > 2) return false;
+        if (odd == 0) return true;
+
+    }
 
 
 }
