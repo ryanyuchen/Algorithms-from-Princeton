@@ -1,14 +1,19 @@
 /*
 Project Link: https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specification.php
 Author: Yu Chen
- */
+*/
 
 import edu.princeton.cs.algs4.Digraph;
 
 public class SAP {
 
+    private final Digraph digraph;
+
     // constructor takes a digraph (not necessarily a DAG)
-    public SAP(Digraph G)
+    public SAP(Digraph G) {
+        if (G == null) throw new IllegalArgumentException("input is null");
+        digraph = new Digraph(G);
+    }
 
     // length of shortest ancestral path between v and w; -1 if no such path
     public int length(int v, int w)
