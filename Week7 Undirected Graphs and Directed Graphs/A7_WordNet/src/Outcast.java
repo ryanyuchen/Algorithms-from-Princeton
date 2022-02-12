@@ -3,8 +3,9 @@ Project Link: https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specif
 Author: Yu Chen
 */
 
-
 public class Outcast {
+
+    private
     // constructor takes a WordNet object
     public Outcast(WordNet wordnet) {
 
