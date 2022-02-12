@@ -105,6 +105,9 @@ public class WordNet {
 
     // do unit testing of this class
     public static void main(String[] args) {
+        WordNet wordNet = new WordNet("./synsets8.txt", "./hypernyms8ManyAncestors.txt");
+        System.out.println(wordNet.distance("a", "c"));
+        System.out.println(wordNet.sap("a", "c"));
 
     }
 }

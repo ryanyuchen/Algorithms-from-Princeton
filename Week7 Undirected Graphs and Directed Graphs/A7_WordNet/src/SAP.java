@@ -3,8 +3,7 @@ Project Link: https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specif
 Author: Yu Chen
 */
 
-import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
-import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.*;
 
 public class SAP {
 
@@ -113,6 +112,16 @@ public class SAP {
 
     // do unit testing of this class
     public static void main(String[] args) {
+        In in = new In(args[0]);
+        Digraph G = new Digraph(in);
+        SAP sap = new SAP(G);
+        while (!StdIn.isEmpty()) {
+            int v = StdIn.readInt();
+            int w = StdIn.readInt();
+            int length = sap.length(v, w);
+            int ancestor = sap.ancestor(v, w);
+            StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+        }
 
     }
 }

@@ -5,7 +5,8 @@ Author: Yu Chen
 
 public class Outcast {
 
-    private
+    private final WordNet wordnet;
+    
     // constructor takes a WordNet object
     public Outcast(WordNet wordnet) {
 
