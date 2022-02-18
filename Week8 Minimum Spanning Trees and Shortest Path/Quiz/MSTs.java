@@ -1,11 +1,6 @@
-package jobinterviewquestions;
-
-import algs4.*;
+import edu.princeton.cs.algs4.*;
 import com.sun.corba.se.impl.activation.ServerTableEntry;
 
-/**
- * Created by Leon on 8/5/15.
- */
 public class MSTs {
     /*
     Question 1

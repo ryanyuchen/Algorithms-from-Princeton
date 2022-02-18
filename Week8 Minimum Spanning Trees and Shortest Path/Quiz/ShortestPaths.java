@@ -1,10 +1,5 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.*;
 
-import algs4.*;
-
-/**
- * Created by Leon on 8/5/15.
- */
 public class ShortestPaths {
     /*
     Question 1
