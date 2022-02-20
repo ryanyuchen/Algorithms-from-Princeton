@@ -8,11 +8,11 @@ import edu.princeton.cs.algs4.Picture;
 import java.awt.*;
 
 public class SeamCarver {
-    private final Picture picture;
+    private Picture picture;
     private int width;
     private int height;
-    private double[] distTo[];
-    private int[] edgeTo[];
+    private double[] distTo;
+    private int[][] edgeTo;
 
     // create a seam carver object based on the given picture
     public SeamCarver(Picture picture) {
@@ -66,22 +66,184 @@ public class SeamCarver {
 
     // sequence of indices for horizontal seam
     public int[] findHorizontalSeam() {
+        int[] seam = new int[width];
+        distTo = new double[height];
+        edgeTo = new int[width][height];
 
+        for (int i = 0; i < height; i++) {
+            distTo[i] = 1000.0;
+        }
+
+        double[][] energy = new double[width][height];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                energy[i][j] = energy(i, j);
+            }
+        }
+
+        for (int i = 1; i < width; i++) {
+            double[] prevDist = distTo.clone();
+
+            for (int j = 0; j < height; j++) {
+                distTo[j] = Double.POSITIVE_INFINITY;
+            }
+
+            for (int j = 1; j < height; j++) {
+                relaxH(j - 1, i, j, prevDist, energy[i][j]);
+                relaxH(j, i, j, prevDist, energy[i][j]);
+                relaxH(j + 1, i, j, prevDist, energy[i][j]);
+            }
+        }
+
+        double min = Double.POSITIVE_INFINITY;
+        int minVertex = 0;
+        for (int i = 0; i < height; i++) {
+            if (distTo[i] < min) {
+                min = distTo[i];
+                minVertex = i;
+            }
+        }
+
+        for (int i = width - 1; i >= 0; i--) {
+            seam[i] = minVertex;
+            minVertex = edgeTo[i][minVertex];
+        }
+
+        return seam;
+    }
+
+    private void relaxH(int prev, int x, int y, double[] prevDist, double energy) {
+        if (prev < 0 || prev > height - 1) return;
+        if (distTo[y] > prevDist[prev] + energy) {
+            distTo[y] = prevDist[prev] + energy;
+            edgeTo[x][y] = prev;
+        }
     }
 
     // sequence of indices for vertical seam
     public int[] findVerticalSeam() {
+        int[] seam = new int[height];
+        distTo = new double[width];
+        edgeTo = new int[width][height];
 
+        for (int i = 0; i < width; i++) {
+            distTo[i] = 1000.0;
+        }
+
+        double[][] energy = new double[width][height];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                energy[i][j] = energy(i, j);
+            }
+        }
+
+        for (int i = 1; i < height; i++) {
+            double[] prevDist = distTo.clone();
+
+            for (int j = 0; j < width; j++) {
+                distTo[j] = Double.POSITIVE_INFINITY;
+            }
+
+            for (int j = 1; j < width; j++) {
+                relaxV(j - 1, j, i, prevDist, energy[j][i]);
+                relaxV(j, j, i, prevDist, energy[j][i]);
+                relaxV(j + 1, j, i, prevDist, energy[j][i]);
+            }
+        }
+
+        double min = Double.POSITIVE_INFINITY;
+        int minVertex = 0;
+        for (int i = 0; i < width; i++) {
+            if (distTo[i] < min) {
+                min = distTo[i];
+                minVertex = i;
+            }
+        }
+
+        for (int i = height - 1; i >= 0; i--) {
+            seam[i] = minVertex;
+            minVertex = edgeTo[i][minVertex];
+        }
+
+        return seam;
+    }
+
+    private void relaxV(int prev, int x, int y, double[] prevDist, double energy) {
+        if (prev < 0 || prev > width - 1) return;
+        if (distTo[x] > prevDist[prev] + energy) {
+            distTo[x] = prevDist[prev] + energy;
+            edgeTo[x][y] = prev;
+        }
     }
 
     // remove horizontal seam from current picture
     public void removeHorizontalSeam(int[] seam) {
+        if (seam == null) {
+            throw new IllegalArgumentException("seam is null");
+        }
+        if (height <= 1 || seam.length != width) {
+            throw new IllegalArgumentException("height not valid");
+        }
+        for (int i = 0; i < seam.length; i++) {
+            if (seam[i] < 0 || seam[i] > height - 1) {
+                throw new IllegalArgumentException("out of range");
+            }
+            if (i > 0 && Math.abs(seam[i] - seam[i - 1]) > 1) {
+                throw new IllegalArgumentException("difference is big");
+            }
+        }
 
+        Picture pic = new Picture(width, height - 1);
+        int k = 0;
+        for (int i = 0; i < seam.length; i++) {
+            for (int j = 0; j < seam[i]; j++) {
+                pic.set(i, k, picture.get(i, j));
+                k++;
+            }
+            for (int j = seam[i] + 1; j < height; j++) {
+                pic.set(i, k, picture.get(i, j));
+                k++;
+            }
+            k = 0;
+        }
+        picture = pic;
+        width = picture.width();
+        height = picture.height();
     }
 
     // remove vertical seam from current picture
     public void removeVerticalSeam(int[] seam) {
+        if (seam == null) {
+            throw new IllegalArgumentException("argument array is null");
+        }
+        if (width <= 1 || seam.length != height) {
+            throw new IllegalArgumentException("width not valid");
+        }
+        for (int i = 0; i < seam.length; i++) {
+            if (seam[i] < 0 || seam[i] > width - 1) {
+                throw new IllegalArgumentException("out of range");
+            }
+            if (i > 0 && Math.abs(seam[i] - seam[i - 1]) > 1) {
+                throw new IllegalArgumentException("difference is big");
+            }
+        }
 
+        Picture pic = new Picture(width - 1, height);
+        int k = 0;
+        for (int i = 0; i < seam.length; i++) {
+            for (int j = 0; j < seam[i]; j++) {
+                pic.set(k, i, picture.get(j, i));
+                k++;
+            }
+            for (int j = seam[i] + 1; j < width; j++) {
+                pic.set(k, i, picture.get(j, i));
+                k++;
+            }
+            k = 0;
+        }
+        picture = pic;
+        width = picture.width();
+        height = picture.height();
     }
 
     //  unit testing (optional)
