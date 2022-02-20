@@ -12,6 +12,8 @@ public class MSTs {
     */
 
     /*
+    Reference: https://www.geeksforgeeks.org/minimum-bottleneck-spanning-treembst/
+    Hint: Proof that every Minimum Spanning Tree is a Minimum Bottleneck Spanning Tree
     Can use any algorithm that help building a MST or:
     Camerini's algorithm:
     1. Find the median edge weight W (find kth algorithm, use pivot and recursively find kth)
