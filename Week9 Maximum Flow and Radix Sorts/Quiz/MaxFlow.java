@@ -1,8 +1,4 @@
-package jobinterviewquestions;
 
-/**
- * Created by Leon on 8/12/15.
- */
 public class MaxFlow {
     /*
     Question 1
