@@ -1,10 +1,5 @@
-package jobinterviewquestions;
-
 import java.util.Arrays;
 
-/**
- * Created by Leon on 8/12/15.
- */
 public class RadixSorts {
     /*
     Question 1
@@ -76,6 +71,23 @@ public class RadixSorts {
         return false;
     }
 
+    //leetcode solution
+    class Solution {
+        public int[] twoSum(int[] nums, int target) {
+            Map<Integer, Integer> numMap = new HashMap<>();
+            for (int i = 0; i < nums.length; i++) {
+                int complement = target - nums[i];
+                if (numMap.containsKey(complement)) {
+                    return new int[] { numMap.get(complement), i };
+                } else {
+                    numMap.put(nums[i], i);
+                }
+            }
+            return new int[] {};
+            
+        }
+    }
+
     /*
     Question 2
     American flag sort.
@@ -85,17 +97,29 @@ public class RadixSorts {
 
     public static void sortR(int[] a, int R) {
         int n = a.length;
+        int[] res = new int[n];
+        int[] count = new int[R+1];
 
-        int[] count = new int[R];
+        // compute freq
         for (int i = 0; i < n; i++) {
-            count[a[i]]++;
+            count[a[i] + 1]++;
         }
-        int k = 0;
-        int r = 0;
-        while (k < n) {
-            while (count[r]-- > 0) a[k++] = r;
-            r++;
+
+        // compute comulative
+        for (int i = 0; i < R; i++) {
+            count[r+1] += count[r];
         }
+
+        // move elements
+        for (int i = 0; i < n; i++) {
+            aux[count[a[i]]++] = a[i];
+        }
+
+        // copy elments
+        for (int i = 0; i < n; i++) {
+            a[i] = aux[i];
+        }
+
     }
 
     /*
@@ -117,6 +141,7 @@ public class RadixSorts {
 
     Signing bonus. Do it in NL time in the worst case.
      */
+     
     //substring function make this function n^2
     private static String[] suffixes(String s) {
         int n = s.length();
