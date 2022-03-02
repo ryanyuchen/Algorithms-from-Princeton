@@ -1,11 +1,5 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.*;
 
-
-import algs4.Queue;
-
-/**
- * Created by Leon on 8/18/15.
- */
 public class SubstringSearch {
     /*
     Question 1

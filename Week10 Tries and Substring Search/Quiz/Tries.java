@@ -1,8 +1,5 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.*;
 
-/**
- * Created by Leon on 8/18/15.
- */
 public class Tries {
     /*
     Question 1
