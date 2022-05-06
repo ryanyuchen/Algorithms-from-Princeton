@@ -163,8 +163,5 @@ public class SubstringSearch {
         return s.substring((centerindex - 1 - maxlen) / 2, (centerindex - 1 + maxlen) / 2);
     }
 
-    public static void main(String[] args) {
-        KMP kmp = new KMP("abc");
-        System.out.print(kmp.tendemRepeat("abcd"));
-    }
+
 }

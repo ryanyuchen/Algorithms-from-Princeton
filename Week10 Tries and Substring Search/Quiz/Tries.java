@@ -59,14 +59,4 @@ public class Tries {
     Suffix trees. Learn about and implement suffix trees, the ultimate string searching data structure.
      */
 
-    public static void main(String[] args) {
-        Prefixfree pf = new Prefixfree();
-
-        pf.add("0100");
-        pf.add("01");
-
-        pf.add("01");
-        pf.add("0100");
-
-    }
 }
