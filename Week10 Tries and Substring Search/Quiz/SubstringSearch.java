@@ -92,6 +92,15 @@ public class SubstringSearch {
         }
     }
 
+    // https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
+    static boolean areRotations(String str1, String str2)
+    {
+        // There lengths must be same and str2 must be
+        // a substring of str1 concatenated with str1. 
+        return (str1.length() == str2.length()) &&
+               ((str1 + str1).indexOf(str2) != -1);
+    }
+
     /*
     Question 2
     Tandem repeat.
@@ -104,9 +113,32 @@ public class SubstringSearch {
     if s is "abcabcababcaba" and b is "abcab", then "abcababcab" is the tandem substring of maximum length (2 copies).
     */
 
-    /*
-    see KMP.tendemRepeat
-     */
+    public class TandemRepeat {
+
+        public int tandem(String pattern, String text) {
+            int m = pattern.length();
+            int n = text.length();
+            if (m > n) {
+                return 0;
+            }
+            int size = m;
+            while (size < n) {
+                KMP kmp = new KMP(pattern);
+                int k = kmp.search(text);
+                if (k != text.length()) {
+                    pattern = pattern.concat(pattern);
+                    size += size;
+                    if (size >= n) {
+                        return size / (2 * m);  // already doubled so,divided by 2
+                    }
+                } else {
+                    return size / (2 * m);  // already doubled so,divided by 2
+                }
+            }
+            return -1;
+        }
+
+    }
 
     /*
     Question 3
@@ -116,11 +148,9 @@ public class SubstringSearch {
      */
 
     /*
-    for linearithmic algorithm, use karp-rabin to hash substring and reverse substring to find palindrome, then use binary search to find the largest number of substring length
-     */
-
-    /*
-    linear time algorithm, from leetcode
+    Notes:
+    - for linearithmic algorithm, use karp-rabin to hash substring and reverse substring to find palindrome, then use binary search to find the largest number of substring length
+    - linear time algorithm, from leetcode
     */
 
     //preprocess string, to avoid dealing with odd and even number problem
@@ -162,6 +192,5 @@ public class SubstringSearch {
 
         return s.substring((centerindex - 1 - maxlen) / 2, (centerindex - 1 + maxlen) / 2);
     }
-
 
 }
