@@ -1,8 +1,12 @@
-package jobinterviewquestions;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
 
-import algs4.Bag;
-import algs4.Digraph;
-import algs4.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.Stack;
 
 /**
  * Created by Leon on 8/23/15.
@@ -21,12 +25,41 @@ public class RegularExpressions {
     Strings that are palindromes (same forwards and backwards). //impossible
     Strings with an equal number of substrings of the form 01 and 10.
     */
+    public static void main(String[] args) {
+
+        // All strings except 11 or 111 ->  [^(11)]*[^(111)]*
+        // Strings with 1 in every odd-number bit position ->  (1(01)*)0
+        // Strings with an equal number of 0s and 1s ->  impossible
+        // Strings with at least two 0s and at most one 1 ->  (100+)|(0+10+)|(00+1)
+        // Strings that when interpreted as a binary integer are a multiple of 3 ->  (1(01*0)*1|0)*
+        // Strings with no two consecutive 1s ->  (0(01|10)*0*)|(1(01)*0*)|(0(10)*(0|1)*)    or    (0*10+)*1?|0*
+        // Strings that are palindromes (same forwards and backwards) -> impossible
+        // Strings with an equal number of substrings of the form 01 and 10 -> 
+
+        String regex = StdIn.readLine();
+        In in = new In(StdIn.readLine());
+        String input = in.readAll();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+
+        while (matcher.find()) {
+            System.out.println(matcher.group());
+        }
+    }
 
 
     /*
     Question 2
     Exponential-size DFA. Design a regular expressions of length N such that any DFA that recognizes the same language has an exponential number of states.
     */
+
+    // Reference: https://github.com/yixuaz/algorithm4-princeton-cos226/blob/master/princetonSolution/src/part2/week5/regularexpression/ExponentialSizeDFA.java
+    // https://www.owenstephens.co.uk/blog/2014/09/28/NFA_DFA.html
+    // hint: nth-to-the-last bit equals 0
+    public static boolean match(String input) {
+        int n = input.length();
+        return Pattern.matches("(0|1)*0(0|1){" + (n - 1) + "}", input);
+    }
 
     /*
     Question 3
