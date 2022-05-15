@@ -8,9 +8,7 @@ import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.Stack;
 
-/**
- * Created by Leon on 8/23/15.
- */
+
 public class RegularExpressions {
     /*
     Question 1
